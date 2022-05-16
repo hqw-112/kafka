@@ -1,0 +1,13 @@
+filebeat.inputs:
+- type: log
+  enabled: true 
+  paths:
+    - /var/info2.*
+#=========================== Filebeat outputs =============================
+#------------------------------kafka-----------------------------------
+output.kafka:
+  hosts: ["192.168.41.3:9092","192.168.41.3:9093"]
+  topic: my-replicated-topic
+  keep_alive: 10s
+  codec.format:
+    string: '%{[@timestamp]} %{[message]}'

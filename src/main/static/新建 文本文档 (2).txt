@@ -1,0 +1,11 @@
+https://github.com/hqw-112/kafka.git
+
+docker run -d --name kfk2 -p 9092:9092 -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=localhost:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092  -t bitnami/kafka:2.8.1
+docker run -d --name kafka2 -p 9093:9092 -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFKA_BROKER_ID=2 -e KAFKA_ZOOKEEPER_CONNECT=192.168.41.3:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.41.3:9093 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -t bitnami/kafka:2.8.1
+docker run -d --name kafka3 -p 9094:9092 -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFKA_BROKER_ID=3 -e KAFKA_ZOOKEEPER_CONNECT=192.168.41.3:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.41.3:9094 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -t bitnami/kafka:2.8.1
+
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-replicated-topic --from-beginning
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --topic my-replicated-topic
+
+
+docker run -d -v //d/b:/usr/share/filebeat/ --name fileb elastic/filebeat:8.2.0
