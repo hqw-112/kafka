@@ -7,5 +7,5 @@ docker run -d --name kafka3 -p 9094:9092 -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFK
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-replicated-topic --from-beginning
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --topic my-replicated-topic
 
-
+docker cp C:\Users\83686\Desktop\info2.txh fileb:/var/
 docker run -d -v //d/b:/usr/share/filebeat/ --name fileb elastic/filebeat:8.2.0
